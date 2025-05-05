@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
+import useUser from "../../hooks/user/useUser";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
+  const [inputUsername, setInputUsername] = useState("");
+  const { setUsername } = useUser();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Welcome, ${username}!`);
+    setUsername(inputUsername);
+    navigate("/main");
   };
 
   return (
@@ -22,8 +27,8 @@ export default function Login() {
             type="text"
             className={styles.input}
             placeholder="John doe"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={inputUsername}
+            onChange={(e) => setInputUsername(e.target.value)}
             required
           />
           <div className={styles.buttonContainer}>

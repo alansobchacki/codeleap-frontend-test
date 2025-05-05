@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Main.module.css";
 import Button from "../../components/Button/Button";
+import useUser from "../../hooks/user/useUser";
 import { useGetPosts } from "../../hooks/postService/useGetPosts";
 
 export default function Main() {
+  const { username } = useUser();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { data } = useGetPosts();
@@ -12,6 +14,10 @@ export default function Main() {
     e.preventDefault();
     console.log(data);
   };
+
+  useEffect(() => {
+    console.log(username);
+  }, [username]);
 
   return (
     <div className={styles.mainContainer}>
