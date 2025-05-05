@@ -9,9 +9,29 @@
 
 .modal {
   display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+}
+
+.greetings {
+  margin: 0 0 15px 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .input {
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .button {

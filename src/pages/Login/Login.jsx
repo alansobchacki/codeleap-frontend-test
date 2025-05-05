@@ -12,19 +12,24 @@ export default function Login() {
   return (
     <div className={styles.mainContainer}>
       <div className={styles.modal}>
-        <h2>Welcome to CodeLeap Network!</h2>
-        <form onSubmit={handleSubmit}>
+        <h2 className={styles.greetings}>Welcome to CodeLeap Network!</h2>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <label htmlFor="username" className={styles.label}>
+            Please enter your username
+          </label>
           <input
             type="text"
             className={styles.input}
-            placeholder="Username"
+            placeholder="John doe"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
-          <button type="submit" className={styles.button}>
-            Submit
-          </button>
+          <div className={styles.buttonContainer}>
+            <button type="submit" className={styles.button}>
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </div>
