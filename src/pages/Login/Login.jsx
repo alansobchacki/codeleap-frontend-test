@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
+import Button from "../../components/Button/Button";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -26,9 +27,7 @@ export default function Login() {
             required
           />
           <div className={styles.buttonContainer}>
-            <button type="submit" className={styles.button}>
-              Submit
-            </button>
+            <Button type="submit">ENTER</Button>
           </div>
         </form>
       </div>
