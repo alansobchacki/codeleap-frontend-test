@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import styles from "./Main.module.css";
 import Button from "../../components/Button/Button";
+import { useGetPosts } from "../../hooks/postService/useGetPosts";
 
 export default function Main() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const { data } = useGetPosts();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // adicionar logica depois
+    console.log(data);
   };
 
   return (
