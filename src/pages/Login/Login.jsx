@@ -32,7 +32,9 @@ export default function Login() {
             required
           />
           <div className={styles.buttonContainer}>
-            <Button type="submit">ENTER</Button>
+            <Button type="submit" disabled={!inputUsername}>
+              ENTER
+            </Button>
           </div>
         </form>
       </div>
