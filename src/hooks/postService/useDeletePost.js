@@ -4,12 +4,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 // but I'm trying to stick to the assigment as close as possible
 const API_URL = import.meta.env.VITE_API_URL;
 
-const useDeletePost = () => {
+export const useDeletePost = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(
-    async (id) => {
-      const response = await fetch(`${API_URL}careers/${id}/`, {
+  return useMutation({
+    mutationFn: async (id) => {
+      const response = await fetch(`${API_URL}${id}/`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -22,12 +22,11 @@ const useDeletePost = () => {
 
       return id;
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["posts"]);
-      },
-    }
-  );
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+    onError: (error) => {
+      console.error("Delete post error:", error);
+    },
+  });
 };
-
-export default useDeletePost;

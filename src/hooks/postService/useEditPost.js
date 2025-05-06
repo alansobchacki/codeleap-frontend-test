@@ -4,13 +4,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 // but I'm trying to stick to the assigment as close as possible
 const API_URL = import.meta.env.VITE_API_URL;
 
-const useEditPost = () => {
+export const useEditPost = () => {
   const queryClient = useQueryClient();
 
-  return useMutation(
-    async (postData) => {
+  return useMutation({
+    mutationFn: async (postData) => {
       const { id, title, content } = postData;
-      const response = await fetch(`${API_URL}careers/${id}/`, {
+      const response = await fetch(`${API_URL}${id}/`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -27,12 +27,11 @@ const useEditPost = () => {
 
       return response.json();
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(["posts"]);
-      },
-    }
-  );
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+    onError: (error) => {
+      console.error("Edit post error:", error);
+    },
+  });
 };
-
-export default useEditPost;
