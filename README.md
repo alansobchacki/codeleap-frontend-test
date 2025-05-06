@@ -4,7 +4,7 @@ This is a coding test front end project built with **React + Vite**.
 
 🔗 Live Demo: https://codeleap-frontend-test-drab.vercel.app/
 
-![chrome_Q5ZZLpVnxF](https://github.com/user-attachments/assets/ecce7226-5516-4787-9f6b-1b2d873c7a4e)
+![chrome_cIEKe6DbmA](https://github.com/user-attachments/assets/b018ecab-afb6-41c6-b635-7c6cd584b1ea)
 
 ## Getting Started
 
@@ -44,4 +44,6 @@ Then visit http://localhost:5173 in your browser.
 
 This project was built with minimal library usage — only MUI and React Query (TanStack) were included — to maintain a focus on core React and JavaScript fundamentals.
 
-I typically work with TypeScript in production projects, but since it wasn't listed as a requirement (at least I didn't see it), this solution uses plain JavaScript and CSS modules. I'd also use some quality-of-life libraries like Axios, Formik, and Jotai, but I felt raw JavaScript / React was the best call here.
+I typically work with TypeScript in production projects, but since it wasn't listed as a requirement (at least I didn't see it), this solution uses plain JavaScript and CSS modules. 
+
+I'd also normally use some quality-of-life libraries like Axios, Formik, and Jotai, but I felt raw JavaScript / React was the best call here.
