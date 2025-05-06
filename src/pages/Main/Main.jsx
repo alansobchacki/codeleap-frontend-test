@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./Main.module.css";
 import useUser from "../../hooks/user/useUser";
 import Button from "../../components/Button/Button";
+import Spinner from "../../components/Spinner/Spinner";
 import getElapsedTime from "../../utils/getElapsedTime";
 import { useGetPosts } from "../../hooks/postService/useGetPosts";
 import { useCreatePost } from "../../hooks/postService/useCreatePost";
@@ -12,7 +13,7 @@ import { BiEdit } from "react-icons/bi";
 
 export default function Main() {
   const { username } = useUser();
-  const { data } = useGetPosts();
+  const { data, isLoading } = useGetPosts();
   const createPostMutation = useCreatePost();
   const deletePostMutation = useDeletePost();
   const editPostMutation = useEditPost();
@@ -107,37 +108,47 @@ export default function Main() {
           </div>
         </form>
 
-        {data?.results?.map((post) => (
-          <div key={post.id} className={styles.postContainer}>
-            <div className={styles.postHeader}>
-              <h2>{post.title}</h2>
-              {username === post.username && (
-                <div className={styles.postIcons}>
-                  <DeleteForeverIcon
-                    style={{ fontSize: 32, cursor: "pointer" }}
-                    onClick={() => handleDeleteClick(post)}
-                  />
-                  <BiEdit
-                    size={32}
-                    style={{ cursor: "pointer" }}
-                    onClick={() => handleEditClick(post)}
-                  />
+        <div className={styles.postsSection}>
+          {isLoading ? (
+            <Spinner />
+          ) : data?.results?.length > 0 ? (
+            data.results.map((post) => (
+              <div key={post.id} className={styles.postContainer}>
+                <div className={styles.postHeader}>
+                  <h2>{post.title}</h2>
+                  {username === post.username && (
+                    <div className={styles.postIcons}>
+                      <DeleteForeverIcon
+                        style={{ fontSize: 32, cursor: "pointer" }}
+                        onClick={() => handleDeleteClick(post)}
+                      />
+                      <BiEdit
+                        size={32}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleEditClick(post)}
+                      />
+                    </div>
+                  )}
                 </div>
-              )}
+                <div className={styles.postDetailsContainer}>
+                  <p className={styles.postDetail}>
+                    <b>@{post.username}</b>
+                  </p>
+                  <p className={styles.postDetail}>
+                    {getElapsedTime(post.created_datetime)}
+                  </p>
+                </div>
+                <div className={styles.postContentContainer}>
+                  <p className={styles.postContent}>{post.content}</p>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className={styles.noPostsDisclaimer}>
+              <p>No posts yet. Be the first to create one!</p>
             </div>
-            <div className={styles.postDetailsContainer}>
-              <p className={styles.postDetail}>
-                <b>@{post.username}</b>
-              </p>
-              <p className={styles.postDetail}>
-                {getElapsedTime(post.created_datetime)}
-              </p>
-            </div>
-            <div className={styles.postContentContainer}>
-              <p className={styles.postContent}>{post.content}</p>
-            </div>
-          </div>
-        ))}
+          )}
+        </div>
 
         {postToDelete && (
           <>
