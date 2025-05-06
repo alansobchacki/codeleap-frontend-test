@@ -3,6 +3,8 @@ import styles from "./Main.module.css";
 import Button from "../../components/Button/Button";
 import useUser from "../../hooks/user/useUser";
 import { useGetPosts } from "../../hooks/postService/useGetPosts";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { BiEdit } from "react-icons/bi";
 
 export default function Main() {
   const { username } = useUser();
@@ -33,6 +35,7 @@ export default function Main() {
             type="text"
             id="title"
             className={styles.titleInput}
+            placeholder="Hello world"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
@@ -41,12 +44,15 @@ export default function Main() {
           <textarea
             id="content"
             className={styles.contentInput}
+            placeholder="Content here"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
           />
           <div className={styles.buttonContainer}>
-            <Button type="submit">Create</Button>
+            <Button type="submit" disabled={!title || !content}>
+              Create
+            </Button>
           </div>
         </form>
 
@@ -54,7 +60,12 @@ export default function Main() {
           <div key={post.id} className={styles.postContainer}>
             <div className={styles.postHeader}>
               <h2>{post.title}</h2>
-              <div className={styles.postIcons}>😂😂</div>
+              {username === post.username && (
+                <div className={styles.postIcons}>
+                  <DeleteForeverIcon style={{ fontSize: 32 }} />
+                  <BiEdit size={32} />
+                </div>
+              )}
             </div>
             <div className={styles.postDetailsContainer}>
               <p className={styles.postDetail}>
@@ -62,7 +73,9 @@ export default function Main() {
               </p>
               <p className={styles.postDetail}>{post.created_datetime}</p>
             </div>
-            <p className={styles.postContentContainer}>{post.content}</p>
+            <div className={styles.postContentContainer}>
+              <p className={styles.postContent}>{post.content}</p>
+            </div>
           </div>
         ))}
       </div>
