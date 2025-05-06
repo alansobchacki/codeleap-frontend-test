@@ -11,7 +11,7 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  width: 50%;
+  width: 60%;
 }
 
 .header {
@@ -112,4 +112,41 @@
 .postContent {
   margin: 0;
   font-size: 18px;
+}
+
+.blurredBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #777777;
+  min-height: 100vh;
+  width: 100%;
+  z-index: 5;
+  opacity: 0.8;
+}
+
+.deleteModal,
+.editModal {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 12px;
+  padding: 25px;
+  z-index: 6;
+  width: 50%;
+  gap: 25px;
+}
+
+.modalWarning {
+  margin: 0;
+}
+
+.modalButtonsContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
 }

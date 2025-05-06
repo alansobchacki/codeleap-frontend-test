@@ -137,22 +137,37 @@ export default function Main() {
         ))}
 
         {postToDelete && (
-          <div onClose={() => setPostToDelete(null)}>
-            <h3>Are you sure you want to delete this post?</h3>
-            <p>This action cannot be undone.</p>
-            <div className={styles.modalButtons}>
-              <Button onClick={() => setPostToDelete(null)}>Cancel</Button>
-              <Button
-                onClick={confirmDelete}
-                style={{ backgroundColor: "#FF5151", color: "white" }}
-              >
-                Delete
-              </Button>
+          <>
+            <div
+              className={styles.blurredBackground}
+              onClick={() => setPostToDelete(null)}
+            ></div>
+            <div className={styles.deleteModal}>
+              <h3 className={styles.modalWarning}>
+                Are you sure you want to delete this item?
+              </h3>
+              <div className={styles.modalButtonsContainer}>
+                <Button
+                  onClick={confirmDelete}
+                  style={{ backgroundColor: "#FF5151" }}
+                >
+                  <b>Delete</b>
+                </Button>
+                <Button
+                  onClick={() => setPostToDelete(null)}
+                  style={{
+                    backgroundColor: "white",
+                    color: "black",
+                    border: "2px solid black",
+                  }}
+                >
+                  <b>Cancel</b>
+                </Button>
+              </div>
             </div>
-          </div>
+          </>
         )}
 
-        {/* Edit Post div */}
         {postToEdit && (
           <div onClose={() => setPostToEdit(null)}>
             <h3>Edit Post</h3>

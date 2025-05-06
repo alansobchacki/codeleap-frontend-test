@@ -5,13 +5,16 @@ export default function Button({
   onClick,
   type = "button",
   disabled,
+  style,
+  className = "",
 }) {
   return (
     <button
-      className={styles.button}
+      className={`${styles.button} ${className}`}
       onClick={onClick}
       type={type}
       disabled={disabled}
+      style={style}
     >
       {children}
     </button>
