@@ -200,7 +200,6 @@ export default function Main() {
                   style={{
                     backgroundColor: "#47B960",
                     color: "white",
-                    width: "75px",
                   }}
                 >
                   <b>Save</b>
@@ -211,7 +210,6 @@ export default function Main() {
                     backgroundColor: "white",
                     color: "black",
                     border: "2px solid black",
-                    width: "75px",
                   }}
                 >
                   <b>Cancel</b>
