@@ -81,7 +81,7 @@ export default function Main() {
           <h2>CodeLeap Network</h2>
         </div>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <h2>What's on your mind?</h2>
+          <h2 className={styles.modalTitle}>What's on your mind?</h2>
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -92,7 +92,9 @@ export default function Main() {
             onChange={(e) => setTitle(e.target.value)}
             required
           />
-          <label htmlFor="content">Content</label>
+          <label className={styles.spacedLabel} htmlFor="content">
+            Content
+          </label>
           <textarea
             id="content"
             className={styles.contentInput}
@@ -199,7 +201,9 @@ export default function Main() {
                 onChange={(e) => setEditTitle(e.target.value)}
                 required
               />
-              <label htmlFor="edit-content">Content</label>
+              <label className={styles.spacedLabel} htmlFor="edit-content">
+                Content
+              </label>
               <textarea
                 id="edit-content"
                 className={styles.contentInput}

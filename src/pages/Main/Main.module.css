@@ -41,6 +41,10 @@
   gap: 10px;
 }
 
+.spacedLabel {
+  margin-top: 15px;
+}
+
 .titleInput,
 .contentInput {
   font-family: "Roboto";
@@ -63,7 +67,7 @@
 .contentInput {
   padding: 10px;
   font-size: 16px;
-  height: 100px;
+  height: 85px;
   resize: vertical;
 }
 
