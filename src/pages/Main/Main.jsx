@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./Main.module.css";
 import Button from "../../components/Button/Button";
 import useUser from "../../hooks/user/useUser";
 import { useGetPosts } from "../../hooks/postService/useGetPosts";
+import { useCreatePost } from "../../hooks/postService/useCreatePost";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { BiEdit } from "react-icons/bi";
 
@@ -11,16 +12,25 @@ export default function Main() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { data } = useGetPosts();
+  const createPostMutation = useCreatePost();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
-  };
 
-  // temporary for debugging
-  useEffect(() => {
-    console.log(username);
-  }, [username]);
+    const postPayload = {
+      username,
+      title,
+      content,
+    };
+
+    try {
+      await createPostMutation.mutateAsync(postPayload);
+      setTitle("");
+      setContent("");
+    } catch (error) {
+      console.error("Error creating post:", error);
+    }
+  };
 
   return (
     <div className={styles.mainContainer}>
