@@ -35,6 +35,7 @@
 
 .titleInput,
 .contentInput {
+  font-family: "Roboto";
   padding: 10px;
   font-size: 16px;
   border: 2px solid #777777;
@@ -138,7 +139,7 @@
   padding: 25px;
   z-index: 6;
   width: 50%;
-  gap: 25px;
+  gap: 10px;
 }
 
 .modalWarning {
@@ -149,4 +150,8 @@
   display: flex;
   flex-direction: row-reverse;
   gap: 20px;
+}
+
+.modalTitle {
+  margin: 0 0 10px 0;
 }

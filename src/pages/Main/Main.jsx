@@ -141,7 +141,7 @@ export default function Main() {
             <div
               className={styles.blurredBackground}
               onClick={() => setPostToDelete(null)}
-            ></div>
+            />
             <div className={styles.deleteModal}>
               <h3 className={styles.modalWarning}>
                 Are you sure you want to delete this item?
@@ -169,32 +169,56 @@ export default function Main() {
         )}
 
         {postToEdit && (
-          <div onClose={() => setPostToEdit(null)}>
-            <h3>Edit Post</h3>
-            <label htmlFor="edit-title">Title</label>
-            <input
-              type="text"
-              id="edit-title"
-              className={styles.titleInput}
-              value={editTitle}
-              onChange={(e) => setEditTitle(e.target.value)}
-              required
+          <>
+            <div
+              className={styles.blurredBackground}
+              onClick={() => setPostToEdit(null)}
             />
-            <label htmlFor="edit-content">Content</label>
-            <textarea
-              id="edit-content"
-              className={styles.contentInput}
-              value={editContent}
-              onChange={(e) => setEditContent(e.target.value)}
-              required
-            />
-            <div className={styles.modalButtons}>
-              <Button onClick={() => setPostToEdit(null)}>Cancel</Button>
-              <Button onClick={saveEdit} disabled={!editTitle || !editContent}>
-                Save
-              </Button>
+            <div className={styles.editModal}>
+              <h2 className={styles.modalTitle}>Edit Item</h2>
+              <label htmlFor="edit-title">Title</label>
+              <input
+                type="text"
+                id="edit-title"
+                className={styles.titleInput}
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+                required
+              />
+              <label htmlFor="edit-content">Content</label>
+              <textarea
+                id="edit-content"
+                className={styles.contentInput}
+                value={editContent}
+                onChange={(e) => setEditContent(e.target.value)}
+                required
+              />
+              <div className={styles.modalButtonsContainer}>
+                <Button
+                  onClick={saveEdit}
+                  disabled={!editTitle || !editContent}
+                  style={{
+                    backgroundColor: "#47B960",
+                    color: "white",
+                    width: "75px",
+                  }}
+                >
+                  <b>Save</b>
+                </Button>
+                <Button
+                  onClick={() => setPostToEdit(null)}
+                  style={{
+                    backgroundColor: "white",
+                    color: "black",
+                    border: "2px solid black",
+                    width: "75px",
+                  }}
+                >
+                  <b>Cancel</b>
+                </Button>
+              </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     </div>
