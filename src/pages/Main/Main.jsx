@@ -1,7 +1,8 @@
 import { useState } from "react";
 import styles from "./Main.module.css";
-import Button from "../../components/Button/Button";
 import useUser from "../../hooks/user/useUser";
+import Button from "../../components/Button/Button";
+import getElapsedTime from "../../utils/getElapsedTime";
 import { useGetPosts } from "../../hooks/postService/useGetPosts";
 import { useCreatePost } from "../../hooks/postService/useCreatePost";
 import { useDeletePost } from "../../hooks/postService/useDeletePost";
@@ -128,7 +129,9 @@ export default function Main() {
               <p className={styles.postDetail}>
                 <b>@{post.username}</b>
               </p>
-              <p className={styles.postDetail}>{post.created_datetime}</p>
+              <p className={styles.postDetail}>
+                {getElapsedTime(post.created_datetime)}
+              </p>
             </div>
             <div className={styles.postContentContainer}>
               <p className={styles.postContent}>{post.content}</p>
