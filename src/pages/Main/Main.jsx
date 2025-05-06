@@ -15,6 +15,7 @@ export default function Main() {
     console.log(data);
   };
 
+  // temporary for debugging
   useEffect(() => {
     console.log(username);
   }, [username]);
@@ -23,7 +24,7 @@ export default function Main() {
     <div className={styles.mainContainer}>
       <div className={styles.contentContainer}>
         <div className={styles.header}>
-          <h3>CodeLeap Network</h3>
+          <h2>CodeLeap Network</h2>
         </div>
         <form className={styles.form} onSubmit={handleSubmit}>
           <h4>What's on your mind?</h4>
@@ -48,6 +49,22 @@ export default function Main() {
             <Button type="submit">Create</Button>
           </div>
         </form>
+
+        {data?.results?.map((post) => (
+          <div key={post.id} className={styles.postContainer}>
+            <div className={styles.postHeader}>
+              <h2>{post.title}</h2>
+              <div className={styles.postIcons}>😂😂</div>
+            </div>
+            <div className={styles.postDetailsContainer}>
+              <p className={styles.postDetail}>
+                <b>@{post.username}</b>
+              </p>
+              <p className={styles.postDetail}>{post.created_datetime}</p>
+            </div>
+            <p className={styles.postContentContainer}>{post.content}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
